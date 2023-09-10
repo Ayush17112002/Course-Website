@@ -1,0 +1,25 @@
+<!--show email avtar and all courses he made-->
+<h1><%= user.email %><br></h1>
+<% console.log(user)%>
+<a href="/course/create">Create A New Course</a><br>
+<img src=<%= user.avatar %> alt="<%= user.name %> width="100" height="100"><br>
+<ol>
+<% for(let i=0;i<user.courses.length;i++){%>
+        <li>
+                <h2><%= user.courses[i].name %></h2><br>
+                <img src="<%= user.courses[i].avatar %>" alt="" width="100" height="100"><br>
+                <h4>Duration: <%= user.courses[i].duration %></h4>
+                <h4>Price: <%= user.courses[i].price %>$</h4>
+                <h4>Eligibility: <%= user.courses[i].eligibility %></h4>
+        </li>
+        <form action="/course/update/<%=user.courses[i]['_id']%>">  
+                <button type="submit">Update</button>
+        </form>
+        <form action="/course/delete/<%= user.courses[i]['_id'] %>">
+                <button type="submit">Delete</button>
+        </form>
+<% } %>
+</ol>
+<form action="/user/signout" method="post">
+        <button type="submit">SIGNOUT</button>
+</form>

@@ -3,15 +3,15 @@ const path = require("path");
 const multer = require("multer");
 const app = express();
 const port = 3000;
-const routes = require("./routes/index");
+const routes = require("./src/routes/index");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use("/uploads", express.static(__dirname + "/src/uploads"));
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-require("./db/connect");
+app.set("views", path.join(__dirname, "src", "views"));
+require("./src/db/connect");
 app.use(routes);
 app.listen(3000, function (err) {
   if (err) {
